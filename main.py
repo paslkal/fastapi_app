@@ -1,5 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session
 import json
+import crud
+import schemas
+import models
+from database import SessionLocal, engine
+
+models.Base.metadata.create_all(bind=engine)
 
 with open('products.json') as f:
     products = json.load(f)
@@ -7,18 +14,26 @@ with open('products.json') as f:
 app = FastAPI()
 
 
-@app.get("/products")
-async def root():
-    return products
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
-@app.post('/products')
-async def add_product():
-    return 'add product'
+
+@app.get("/products")
+def get_products(skip: int=0, limit: int=100, db: Session = Depends(get_db)):
+    return crud.get_products(db, skip=skip, limit=limit)
+
+@app.post('/products', response_model=schemas.Product)
+def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
+    return crud.add_product(db, product=product)
 
 @app.put('/products')
-async def update_product():
+def update_product():
     return 'update product'
 
 @app.delete('/products')
-async def delete_product():
+def delete_product():
     return 'delete product' 
