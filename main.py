@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 import json
 import crud
@@ -38,14 +38,30 @@ def update_product(
     product: schemas.ProductUpdate, 
     db: Session = Depends(get_db)
 ):
+    found_product = crud.find_product(db, id=id)
+
+    if (not found_product):
+        return HTTPException(status_code=400, detail='Product not found')
+
+
     return crud.update_price(db, id=id, product=product)
 
 
 @app.delete('/products/{id}')
 def delete_product(id: int, db: Session = Depends(get_db)):
+    found_product = crud.find_product(db, id=id)
+
+    if (not found_product):
+        return HTTPException(status_code=400, detail='Product not found')
+
     return crud.delete_product(db, id=id) 
 
 
 @app.get('/products/categories/{id}')
 def get_categories(id: int, db: Session = Depends(get_db)):
+    found_product = crud.find_product(db, id=id)
+
+    if (not found_product):
+        return HTTPException(status_code=400, detail='Product not found')
+
     return crud.get_categories(db, id=id)
