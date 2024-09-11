@@ -1,11 +1,15 @@
 from fastapi import FastAPI
+import json
+
+with open('products.json') as f:
+    products = json.load(f)
 
 app = FastAPI()
 
 
 @app.get("/products")
 async def root():
-    return [{"product": "t-shirt"}]
+    return products
 
 @app.post('/products')
 async def add_product():
