@@ -23,8 +23,20 @@ def get_db():
 
 
 @app.get("/products")
-def get_products(skip: int=0, limit: int=100, db: Session = Depends(get_db)):
-    return crud.get_products(db, skip=skip, limit=limit)
+def get_products(
+    price: int=0,
+    reverse: bool = False, 
+    skip: int=0, 
+    limit: int=100, 
+    db: Session = Depends(get_db)
+):
+    return crud.get_products(
+        db, 
+        skip=skip, 
+        limit=limit, 
+        price=price, 
+        reverse=reverse
+    )
 
 
 @app.post('/products', response_model=schemas.Product)

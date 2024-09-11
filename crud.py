@@ -7,7 +7,34 @@ def find_product(db: Session, *, id: int):
 
     return product
 
-def get_products(db: Session, *, skip: int = 0, limit:int = 100):
+def get_products(
+    db: Session, 
+    *, 
+    skip: int = 0, 
+    limit:int = 100, 
+    price: int = 0, 
+    reverse: bool = False
+):
+    if (price):
+        if (reverse):
+            return (
+                db.query(models.Product)
+                    .filter(models.Product.price_cents < price)
+                    .offset(skip)
+                    .limit(limit)
+                    .all()
+            )
+
+
+        return (
+            db.query(models.Product)
+                .filter(models.Product.price_cents >= price)
+                .offset(skip)
+                .limit(limit)
+                .all()
+        )
+
+    
     return db.query(models.Product).offset(skip).limit(limit).all()
 
 def add_product(db: Session, product):
