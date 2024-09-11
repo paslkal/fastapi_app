@@ -33,3 +33,11 @@ def delete_product(db: Session, *, id: int):
     db.commit()
 
     return 'Product has been deleted'
+
+
+def get_categories(db: Session, *, id: int):
+    product = db.query(models.Product).filter_by(id = id).first()
+
+    categories = product.keywords
+
+    return categories

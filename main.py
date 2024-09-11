@@ -44,3 +44,8 @@ def update_product(
 @app.delete('/products/{id}')
 def delete_product(id: int, db: Session = Depends(get_db)):
     return crud.delete_product(db, id=id) 
+
+
+@app.get('/products/categories/{id}')
+def get_categories(id: int, db: Session = Depends(get_db)):
+    return crud.get_categories(db, id=id)
