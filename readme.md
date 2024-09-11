@@ -1,0 +1,1 @@
+Run `docker compose up --build` or `docker-compose up --build` and open http://localhost:8000/docs
