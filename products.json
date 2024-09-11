@@ -35,9 +35,7 @@
       "tshirts",
       "apparel",
       "mens"
-    ],
-    "type": "clothing",
-    "sizeChartLink": "images/clothing-size-chart.png"
+    ]
   },
   {
     "name": "2 Slot Toaster - Black",
@@ -50,10 +48,7 @@
       "toaster",
       "kitchen",
       "appliances"
-    ],
-    "type": "applience",
-    "applienceInstructions": "images/appliance-instructions.png",
-    "applienceWarranty": "images/appliance-warranty.png"
+    ]
   },
   {
     "name": "6 Piece White Dinner Plate Set",
@@ -146,9 +141,7 @@
       "swimming",
       "bathing",
       "apparel"
-    ],
-    "type": "clothing",
-    "sizeChartLink": "images/clothing-size-chart.png"
+    ]
   },
   {
     "name": "Round Sunglasses",
@@ -214,10 +207,7 @@
       "water boiler",
       "appliances",
       "kitchen"
-    ],
-    "type": "applience",
-    "applienceInstructions": "images/appliance-instructions.png",
-    "applienceWarranty": "images/appliance-warranty.png"
+    ]
   },
   {
     "name": "Ultra Soft Tissue 2-Ply - 18 Box",
@@ -274,9 +264,7 @@
       "sweaters",
       "womens",
       "apparel"
-    ],
-    "type": "clothing",
-    "sizeChartLink": "images/clothing-size-chart.png"
+    ]
   },
   {
     "name": "Bathroom Bath Rug Mat 20 x 31 Inch - Grey",
@@ -317,9 +305,7 @@
       "shirts",
       "apparel",
       "mens"
-    ],
-    "type": "clothing",
-    "sizeChartLink": "images/clothing-size-chart.png"
+    ]
   },
   {
     "name": "Trash Can with Foot Pedal - Brushed Stainless Steel",
@@ -484,10 +470,7 @@
       "coffeemakers",
       "kitchen",
       "appliances"
-    ],
-    "type": "applience",
-    "applienceInstructions": "images/appliance-instructions.png",
-    "applienceWarranty": "images/appliance-warranty.png"
+    ]
   },
   {
     "name": "Blackout Curtains Set 42 x 84-Inch - Black, 2 Panels",
@@ -539,10 +522,7 @@
       "food blenders",
       "kitchen",
       "appliances"
-    ],
-    "type": "applience",
-    "applienceInstructions": "images/appliance-instructions.png",
-    "applienceWarranty": "images/appliance-warranty.png"
+    ]
   },
   {
     "name": "10-Piece Mixing Bowl Set with Lids - Floral",
