@@ -1,5 +1,4 @@
 from sqlalchemy.orm import Session
-from fastapi import Depends
 
 import models
 
@@ -7,12 +6,7 @@ def get_products(db: Session, *, skip: int = 0, limit:int = 100):
     return db.query(models.Product).offset(skip).limit(limit).all()
 
 def add_product(db: Session, product):
-    new_product = models.Product(
-        name=product.name, 
-        rating=product.rating,
-        price_cents=product.price_cents,
-        keywords=product.keywords
-    ) 
+    new_product = models.Product(**product.dict()) 
 
     db.add(new_product)
     db.commit()
@@ -38,6 +32,6 @@ def delete_product(db: Session, *, id: int):
 def get_categories(db: Session, *, id: int):
     product = db.query(models.Product).filter_by(id = id).first()
 
-    categories = product.keywords
+    categories = product.categories
 
     return categories

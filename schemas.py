@@ -4,7 +4,7 @@ class ProductBase(BaseModel):
     name: str
     rating: dict
     price_cents: int
-    keywords: list[str] 
+    categories: list[str] 
 
 
 class ProductCreate(ProductBase):
@@ -21,4 +21,4 @@ class ProductUpdate(BaseModel):
     name: str | None = None
     rating: dict | None = None
     price_cents: int
-    keywords: list[str] | None = None
+    categories: list[str] | None = None

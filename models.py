@@ -8,4 +8,4 @@ class Product(Base):
     name = Column(String)
     rating = Column(JSON)
     price_cents = Column(Integer)
-    keywords = Column(JSON)
+    categories = Column(JSON)
