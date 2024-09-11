@@ -26,14 +26,21 @@ def get_db():
 def get_products(skip: int=0, limit: int=100, db: Session = Depends(get_db)):
     return crud.get_products(db, skip=skip, limit=limit)
 
+
 @app.post('/products', response_model=schemas.Product)
 def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     return crud.add_product(db, product=product)
 
-@app.put('/products')
-def update_product():
-    return 'update product'
 
-@app.delete('/products')
-def delete_product():
-    return 'delete product' 
+@app.put('/products/{id}')
+def update_product(
+    id: int, 
+    product: schemas.ProductUpdate, 
+    db: Session = Depends(get_db)
+):
+    return crud.update_price(db, id=id, product=product)
+
+
+@app.delete('/products/{id}')
+def delete_product(id: int, db: Session = Depends(get_db)):
+    return crud.delete_product(db, id=id) 

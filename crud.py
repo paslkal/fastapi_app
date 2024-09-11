@@ -3,7 +3,7 @@ from fastapi import Depends
 
 import models
 
-def get_products(db: Session, skip: int = 0, limit:int = 100):
+def get_products(db: Session, *, skip: int = 0, limit:int = 100):
     return db.query(models.Product).offset(skip).limit(limit).all()
 
 def add_product(db: Session, product):
@@ -17,10 +17,19 @@ def add_product(db: Session, product):
     db.add(new_product)
     db.commit()
     db.refresh(new_product)
+    
     return new_product
 
-def update_product():
-    pass
+def update_price(db: Session, *, id: int, product):
+    db.query(models.Product).filter_by(id = id).update({"price_cents": product.price_cents})
+    
+    db.commit()
 
-def delete_product():
-    pass
+    return 'Product has been updated'
+
+def delete_product(db: Session, *, id: int):
+    db.query(models.Product).filter_by(id = id).delete()
+
+    db.commit()
+
+    return 'Product has been deleted'

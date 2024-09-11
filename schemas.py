@@ -16,3 +16,9 @@ class Product(ProductBase):
 
     class Config:
         orm_mode = True
+
+class ProductUpdate(BaseModel):
+    name: str | None = None
+    rating: dict | None = None
+    price_cents: int
+    keywords: list[str] | None = None
