@@ -39,7 +39,7 @@ def get_products(
     )
 
 
-@app.post('/products', response_model=schemas.Product)
+@app.post('/products', response_model=schemas.Product, status_code=201)
 def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     return crud.add_product(db, product=product)
 
@@ -53,7 +53,7 @@ def update_product(
     found_product = crud.find_product(db, id=id)
 
     if (not found_product):
-        return HTTPException(status_code=400, detail='Product not found')
+        return HTTPException(status_code=404, detail='Product not found')
 
 
     return crud.update_price(db, id=id, product=product)
@@ -64,7 +64,7 @@ def delete_product(id: int, db: Session = Depends(get_db)):
     found_product = crud.find_product(db, id=id)
 
     if (not found_product):
-        return HTTPException(status_code=400, detail='Product not found')
+        return HTTPException(status_code=404, detail='Product not found')
 
     return crud.delete_product(db, id=id) 
 
@@ -74,6 +74,6 @@ def get_categories(id: int, db: Session = Depends(get_db)):
     found_product = crud.find_product(db, id=id)
 
     if (not found_product):
-        return HTTPException(status_code=400, detail='Product not found')
+        return HTTPException(status_code=404, detail='Product not found')
 
     return crud.get_categories(db, id=id)
