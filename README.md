@@ -1,1 +1,22 @@
-Run `docker compose up --build` or `docker-compose up --build` and open http://localhost:8000/docs
+# FastAPI Application
+
+## Запуск
+Запустите docker, используя команду `docker compose up --build`, если вы используете Windows, и `docker-compose up --build`, если используете MacOS или Linux, и откройте http://localhost:8000/docs
+
+Также вы можете запустить тест, зайдя в docker, используя команду `docker exec -it fastapi_app sh`, и запустив `pytest`  
+
+
+> [!WARNING]  
+> Тесты провалятся, если в базе данных уже есть данные. Т.е база данных должна быть пуста перед запуском теста 
+
+## API
+1. `GET /products`  - Возвращает продукты из базы данных<br>
+Можно отфильтровать результат, используя query parameters. <br>
+Примеры:
+  - `/products?skip=3&limit=200` пропустит первые 3 продукта и покажет не больше 200 продуктов, что есть в базе данных
+  - `/products?price=1000` найдет продукты, у которых цена не менее 1000 центов 
+  - `products?price=200&reverse=true` найдет продукты строго меньше 2000 центов
+2. `POST /products` - Создает новый продукт, сохраняя его в базе данных
+3. `PUT /products/{id}` - Обновляет цену продукта 
+3. `DELETE /products/{id}` - Удаляет продукт из базы данных
+4. `GET /products/categories/{id}` - Возвращает категории продукта
