@@ -38,7 +38,7 @@ def get_products(
     return db.query(models.Product).offset(skip).limit(limit).all()
 
 def add_product(db: Session, product):
-    new_product = models.Product(**product.dict()) 
+    new_product = models.Product(**product.model_dump()) 
 
     db.add(new_product)
     db.commit()
@@ -54,7 +54,7 @@ def update_price(db: Session, *, id: int, product):
     db.commit()
     print(product.price_cents)
 
-    return 'Product has been updated'
+    return {"message":'Product has been updated'}
 
 def delete_product(db: Session, *, id: int):
     db.query(models.Product).filter_by(id = id).delete()

@@ -22,7 +22,7 @@ def get_db():
         db.close()
 
 
-@app.get("/products", response_model=schemas.Product)
+@app.get("/products", response_model=list[schemas.Product])
 def get_products(
     price: int=0,
     reverse: bool = False, 
@@ -44,7 +44,7 @@ def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     return crud.add_product(db, product=product)
 
 
-@app.put('/products/{id}', response_model=schemas.ProductMessage)
+@app.put('/products/{id}')
 def update_product(
     id: int, 
     product: schemas.ProductUpdate, 
