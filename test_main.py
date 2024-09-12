@@ -42,6 +42,24 @@ def test_update_product():
     assert response.json() == {"message": "Product has been updated"}
 
 
+def test_get_categories():
+    id = 1
+
+    response = client.get(f'/products/categories/{id}')
+
+    categories = {
+        "categories": [
+            "robe",
+            "swimsuit",
+            "swimming",
+            "bathing",
+            "apparel"
+        ] 
+    }
+
+    assert response.status_code == 200
+    assert response.json() == categories
+
 def test_delete_product():
     id = 1
 

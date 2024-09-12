@@ -67,6 +67,6 @@ def delete_product(db: Session, *, id: int):
 def get_categories(db: Session, *, id: int):
     product = find_product(db, id=id)
 
-    categories = product.categories
+    categories = dict(categories = product.categories)
 
     return categories
