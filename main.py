@@ -22,7 +22,7 @@ def get_db():
         db.close()
 
 
-@app.get("/products")
+@app.get("/products", response_model=schemas.Product)
 def get_products(
     price: int=0,
     reverse: bool = False, 
@@ -44,7 +44,7 @@ def add_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     return crud.add_product(db, product=product)
 
 
-@app.put('/products/{id}')
+@app.put('/products/{id}', response_model=schemas.ProductMessage)
 def update_product(
     id: int, 
     product: schemas.ProductUpdate, 
@@ -59,7 +59,7 @@ def update_product(
     return crud.update_price(db, id=id, product=product)
 
 
-@app.delete('/products/{id}')
+@app.delete('/products/{id}', response_model=schemas.ProductMessage)
 def delete_product(id: int, db: Session = Depends(get_db)):
     found_product = crud.find_product(db, id=id)
 
@@ -69,7 +69,7 @@ def delete_product(id: int, db: Session = Depends(get_db)):
     return crud.delete_product(db, id=id) 
 
 
-@app.get('/products/categories/{id}')
+@app.get('/products/categories/{id}', response_model=schemas.ProductCategories)
 def get_categories(id: int, db: Session = Depends(get_db)):
     found_product = crud.find_product(db, id=id)
 

@@ -22,3 +22,9 @@ class ProductUpdate(BaseModel):
     rating: dict | None = None
     price_cents: int
     categories: list[str] | None = None
+
+class ProductCategories(BaseModel):
+    categories: list[str]
+
+class ProductMessage(BaseModel):
+    message: str

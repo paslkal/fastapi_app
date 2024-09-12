@@ -61,7 +61,7 @@ def delete_product(db: Session, *, id: int):
 
     db.commit()
 
-    return 'Product has been deleted'
+    return {"message": 'Product has been deleted'}
 
 
 def get_categories(db: Session, *, id: int):
