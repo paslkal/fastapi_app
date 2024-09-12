@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-import schemas
+import database.schemas as schemas
 from main import app
 
 client = TestClient(app)

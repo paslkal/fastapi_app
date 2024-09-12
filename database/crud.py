@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-import models
+import database.models as models
 
 def find_product(db: Session, *, id: int):
     product = db.query(models.Product).filter_by(id = id).first()
